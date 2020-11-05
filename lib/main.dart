@@ -8,37 +8,35 @@ import './models/transaction.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Personal Expenses',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
-        accentColor: Colors.amber,
-        fontFamily: 'Quicksand',
-        textTheme: ThemeData.light().textTheme.copyWith(
-          title: TextStyle(
-            fontFamily: 'OpenSans',
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
-        ),
-        appBarTheme: AppBarTheme(
+          primarySwatch: Colors.purple,
+          accentColor: Colors.amber,
+          fontFamily: 'Quicksand',
           textTheme: ThemeData.light().textTheme.copyWith(
-            title: TextStyle(
-              fontFamily: 'OpenSans',
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        )
-      ),
+                title: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+          appBarTheme: AppBarTheme(
+            textTheme: ThemeData.light().textTheme.copyWith(
+                  title: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+          )),
       home: MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget{
+class MyHomePage extends StatefulWidget {
   // String titleInput;
   // String amountInput;
   @override
@@ -48,8 +46,8 @@ class MyHomePage extends StatefulWidget{
 class _MyHomePageState extends State<MyHomePage> {
   // final titleController = TextEditingController();
 
-  // final amountController = TextEditingController(); 
-    final List<Transaction> _userTransactions = [
+  // final amountController = TextEditingController();
+  final List<Transaction> _userTransactions = [
     // Transaction(
     //   id: 't1',
     //   title: 'New shoes',
@@ -65,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
 
   List<Transaction> get _recentTransactions {
-    return _userTransactions.where( (tx) {
+    return _userTransactions.where((tx) {
       return tx.date.isAfter(
         DateTime.now().subtract(
           Duration(days: 7),
@@ -82,19 +80,22 @@ class _MyHomePageState extends State<MyHomePage> {
       id: DateTime.now().toString(),
     );
     setState(() {
-      _userTransactions.add(newTx); 
+      _userTransactions.add(newTx);
     });
   }
 
   void _startAddNewTransaction(BuildContext ctx) {
-    showModalBottomSheet(context: ctx, builder: (_) {
-      return GestureDetector(
-        onTap: () {}, 
-        child: NewTransaction(_addNewTransaction),
-        behavior: HitTestBehavior.opaque,
-      );
-    },);
-  } 
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return GestureDetector(
+          onTap: () {},
+          child: NewTransaction(_addNewTransaction),
+          behavior: HitTestBehavior.opaque,
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('Personal Expenses'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.add), 
+            icon: Icon(Icons.add),
             onPressed: () => _startAddNewTransaction(context),
           ),
         ],
