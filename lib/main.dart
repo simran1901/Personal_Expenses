@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
-  
+
   List<Transaction> get _recentTransactions {
     return _userTransactions.where((tx) {
       return tx.date.isAfter(
@@ -160,14 +160,14 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
         ],
       ),
       _showChart
-                  ? Container(
-                      height: (mediaQuery.size.height -
-                              appBar.preferredSize.height -
-                              mediaQuery.padding.top) *
-                          0.7,
-                      child: Chart(_recentTransactions),
-                    )
-                  : txListWidget,
+          ? Container(
+              height: (mediaQuery.size.height -
+                      appBar.preferredSize.height -
+                      mediaQuery.padding.top) *
+                  0.7,
+              child: Chart(_recentTransactions),
+            )
+          : txListWidget,
     ];
   }
 
@@ -230,16 +230,16 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
           children: <Widget>[
             if (isLandscape)
               ..._buildLandscapeContent(
-                mediaQuery, 
-                appBar, 
+                mediaQuery,
+                appBar,
                 txListWidget,
               ),
             if (!isLandscape)
               ..._buildPortraitContent(
-                mediaQuery, 
-                appBar, 
+                mediaQuery,
+                appBar,
                 txListWidget,
-              ),             ,
+              ),
           ],
         ),
       ),
